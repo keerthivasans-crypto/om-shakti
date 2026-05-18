@@ -1477,6 +1477,7 @@ window.onload = () => {
   if (sessionStorage.getItem('omshakti-age')) {
     document.getElementById('age-gate').classList.add('hidden');
     initApp();
+    autoUpdateOrders();
   }
 };
 
@@ -1870,19 +1871,107 @@ function renderReviewStep(items) { const total=items.reduce((s,i)=>s+i.product.p
 `; }
 function selectPayment(el) { document.querySelectorAll('.payment-method').forEach(m=>m.classList.remove('active')); el.classList.add('active'); }
 function placeOrder() {
-  cart = []; saveCart();
-  checkoutStep = 1;
-  showToast('🎉 Order placed successfully! Tracking ID: SPR-'+Math.random().toString(36).slice(2,8).toUpperCase(), 'success');
-  setTimeout(()=>showPage('dashboard'),800);
-}
 
+  const items = cart.map(i => ({
+    ...i,
+    product: PRODUCTS.find(p => p.id === i.id)
+  }));
+
+  const subtotal = items.reduce(
+    (s, i) => s + i.product.price * i.qty,
+    0
+  );
+
+  const total =
+    subtotal +
+    Math.round(subtotal * 0.12) +
+    (subtotal >= 1999 ? 0 : 99);
+
+  const newOrder = {
+
+    id:
+      "OM-" +
+      Math.random()
+        .toString(36)
+        .slice(2, 8)
+        .toUpperCase(),
+
+    items,
+
+    status: "processing",
+
+    total,
+
+    date: new Date().toLocaleDateString("en-IN"),
+
+    time: new Date().toLocaleTimeString(),
+
+  };
+
+  const orders =
+    JSON.parse(
+      localStorage.getItem("omshakti-orders")
+    ) || [];
+
+  orders.unshift(newOrder);
+
+  localStorage.setItem(
+    "omshakti-orders",
+    JSON.stringify(orders)
+  );
+
+  cart = [];
+
+  saveCart();
+
+  checkoutStep = 1;
+
+  showToast(
+    `🎉 Order placed successfully!`,
+    "success"
+  );
+
+  renderDashboard();
+
+  setTimeout(() => {
+    showPage("dashboard");
+  }, 800);
+
+}
+function autoUpdateOrders(){
+
+  let orders =
+    JSON.parse(
+      localStorage.getItem("omshakti-orders")
+    ) || [];
+
+  orders = orders.map(order => {
+
+    if(order.status === "processing"){
+
+      order.status = "Preparing";
+
+    }
+    else if(order.status === "Preparing"){
+
+      order.status = "Out for Delivery";
+
+    }
+
+    return order;
+
+  });
+
+  localStorage.setItem(
+    "omshakti-orders",
+    JSON.stringify(orders)
+  );
+
+}
 // ─── DASHBOARD ────────────────────────────────────────────────────────────
 function renderDashboard() {
-  const sampleOrders = [
-    { id:'SPR-X72KA', items:[PRODUCTS[0],PRODUCTS[4]], status:'delivered', total:4420, date:'12 Dec 2025' },
-    { id:'SPR-9QWRM', items:[PRODUCTS[1]], status:'processing', total:6800, date:'15 Dec 2025' },
-    { id:'SPR-PLWZB', items:[PRODUCTS[2],PRODUCTS[9]], status:'transit', total:1000, date:'16 Dec 2025' },
-  ];
+ const sampleOrders =
+  JSON.parse(localStorage.getItem("omshakti-orders")) || [];
   document.getElementById('dashboard-content').innerHTML=`
     <div class="dashboard-grid">
       <div class="dash-sidebar">
@@ -1908,19 +1997,55 @@ function renderDashboard() {
         <div class="table-container">
           <div class="table-header"><h3>Recent Orders</h3><button class="btn-secondary" style="padding:0.4rem 0.9rem;font-size:0.72rem" onclick="showTrackingModal()">🚚 Track Order</button></div>
           <div class="orders-list" style="padding:0 0.25rem 0.25rem">
-            ${sampleOrders.map(o=>`
-              <div class="order-row" onclick="showTrackingModal()">
-                <div class="order-id">${o.id}<div style="font-size:0.65rem;color:var(--text3);margin-top:2px">${o.date}</div></div>
-                <div class="order-items-preview">${o.items.map(p=>`<div class="order-item-thumb">${p.emoji}</div>`).join('')}</div>
-                <div class="order-status status-${o.status}">${o.status.charAt(0).toUpperCase()+o.status.slice(1)}</div>
-                <div class="order-total">${fmt(o.total)}</div>
-              </div>
-            `).join('')}
-          </div>
-        </div>
+           ${sampleOrders.length
+? sampleOrders.map(order => `
+
+<div class="order-card">
+
+  <div class="order-top">
+
+    <div>
+      <div class="order-id">
+        ${order.id}
+      </div>
+
+      <div class="order-date">
+        ${order.date}
       </div>
     </div>
-  `;
+
+    <div class="order-status">
+      ${order.status}
+    </div>
+
+  </div>
+
+  <div class="order-products">
+
+    ${order.items.map(i => `
+
+      <div class="order-product">
+        ${i.product.emoji}
+      </div>
+
+    `).join("")}
+
+  </div>
+
+  <div class="order-total">
+    ${fmt(order.total)}
+  </div>
+
+</div>
+
+`).join("")
+:
+`
+<div class="empty-cart">
+  <div class="empty-icon">📦</div>
+  <h3>No Orders Yet</h3>
+</div>
+`
 }
 
 function showTrackingModal() {
