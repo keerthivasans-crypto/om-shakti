@@ -980,7 +980,13 @@ body{
         <span class="nav-icon">🛒</span><span>Cart</span>
         <span class="badge" id="cart-badge">0</span>
       </button>
-      <button class="nav-btn" onclick="showPage('dashboard')"><span class="nav-icon">👤</span><span>Account</span></button>
+      <button class="nav-btn" onclick="openLoginModal()">
+
+  <span class="nav-icon">👤</span>
+
+  <span id="user-label">Login</span>
+
+</button>
       <button
   class="nav-btn"
   id="admin-btn"
@@ -1543,6 +1549,84 @@ document.addEventListener("keydown", (e) => {
       );
 
     }
+
+  }
+
+});
+  // ─── FIREBASE AUTH ─────────────────────────────
+
+function openLoginModal(){
+
+  document
+    .getElementById("login-modal")
+    .classList.add("open");
+
+}
+
+function loginUser(){
+
+  const email =
+    document.getElementById("login-email").value;
+
+  const password =
+    document.getElementById("login-password").value;
+
+  auth.signInWithEmailAndPassword(
+    email,
+    password
+  )
+
+  .then(() => {
+
+    showToast(
+      "✅ Login successful",
+      "success"
+    );
+
+    document
+      .getElementById("login-modal")
+      .classList.remove("open");
+
+  })
+
+  .catch(err => {
+
+    showToast(
+      err.message,
+      "error"
+    );
+
+  });
+
+}
+
+function googleLogin(){
+
+  const provider =
+    new firebase.auth.GoogleAuthProvider();
+
+  auth.signInWithPopup(provider)
+
+  .then(() => {
+
+    showToast(
+      "✅ Google login successful",
+      "success"
+    );
+
+  });
+
+}
+
+// auth state
+auth.onAuthStateChanged(user => {
+
+  if(user){
+
+    document
+      .getElementById("user-label")
+      .innerText =
+      user.displayName || "My Account";
 
   }
 
@@ -2279,6 +2363,73 @@ updateCartBadge();
   <button onclick="showPage('cart')">🛒<span>Cart</span></button>
 
   <button onclick="showPage('dashboard')">👤<span>Account</span></button>
+
+</div>
+  <script>
+
+const firebaseConfig = {
+
+  apiKey: "AIzaSyBWxY4WQmJkv5lhRbcsfeoo7R9ANSnJWL0",
+
+  authDomain: "om-shakti.firebaseapp.com",
+
+  projectId: "om-shakti",
+
+  storageBucket: ""om-shakti.firebasestorage.app",
+
+  messagingSenderId: "432657919880",
+
+  appId: "G-D7KRXV2BV9"
+
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const auth = firebase.auth();
+
+const db = firebase.firestore();
+
+</script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <div id="login-modal" class="modal-overlay">
+
+  <div class="modal">
+
+    <h2>Login to OM SHAKTI</h2>
+
+    <input
+      type="email"
+      id="login-email"
+      placeholder="Email"
+      class="form-input"
+    >
+
+    <input
+      type="password"
+      id="login-password"
+      placeholder="Password"
+      class="form-input"
+    >
+
+    <button
+      class="btn-primary"
+      onclick="loginUser()"
+    >
+      Login
+    </button>
+
+    <button
+      class="btn-secondary"
+      onclick="googleLogin()"
+    >
+      Continue with Google
+    </button>
+
+  </div>
 
 </div>
 </body>
