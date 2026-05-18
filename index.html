@@ -737,6 +737,9 @@
     .nav-search { max-width: none; }
   }
 </style>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </head>
 <body>
 
@@ -772,9 +775,10 @@
 <nav id="navbar">
   <div class="nav-inner">
     <a class="nav-logo" onclick="showPage('home')">Spiritz</a>
-    <div class="nav-location" onclick="showToast('📍 Madurai, Tamil Nadu — Delivery available', 'info')">
-      📍 <strong>Madurai</strong><span style="color:var(--text3)"> ▾</span>
-    </div>
+    <div class="nav-location" onclick="detectLocation()">
+  📍 <strong id="user-city">Detect Location</strong>
+  <span style="color:var(--text3)"> ▾</span>
+</div>
     <div class="nav-search">
       <input type="text" id="search-input" placeholder="Search whisky, gin, wine, beer..." onkeydown="if(event.key==='Enter')doSearch()">
       <button onclick="doSearch()">🔍</button>
@@ -1094,7 +1098,149 @@ function updateCartBadge() {
 }
 function fmt(n) { return '₹' + n.toLocaleString('en-IN'); }
 function stars(r) { return '★'.repeat(Math.floor(r)) + (r%1>=0.5?'½':'') + '☆'.repeat(5-Math.ceil(r)); }
+// ─── INDIA DELIVERY LOCATIONS ─────────────────────────
 
+const DELIVERY_CITIES = [
+  "Chennai","Madurai","Coimbatore","Salem","Trichy",
+  "Bangalore","Mumbai","Delhi","Hyderabad","Pune",
+  "Kolkata","Ahmedabad","Goa","Jaipur","Kochi",
+  "Lucknow","Surat","Indore","Bhopal","Vizag"
+];
+
+// Example nearest stores
+const STORES = [
+  {
+    city: "Chennai",
+    name: "Spiritz Chennai Central",
+    deliveryFee: 99
+  },
+  {
+    city: "Madurai",
+    name: "Spiritz Madurai Elite",
+    deliveryFee: 49
+  },
+  {
+    city: "Bangalore",
+    name: "Spiritz Bangalore Premium",
+    deliveryFee: 129
+  }
+];
+
+// ─── DETECT USER LOCATION ─────────────────────────────
+
+function detectLocation() {
+
+  if (!navigator.geolocation) {
+    showToast("Geolocation not supported", "error");
+    return;
+  }
+
+  showToast("📍 Detecting your location...", "info");
+
+  navigator.geolocation.getCurrentPosition(
+    async (position) => {
+
+      const lat = position.coords.latitude;
+      const lng = position.coords.longitude;
+      window.userLat = lat;
+window.userLng = lng;
+
+      const url =
+        `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`;
+
+      try {
+
+        const response = await fetch(url);
+        const data = await response.json();
+
+        const city =
+          data.address.city ||
+          data.address.town ||
+          data.address.state_district ||
+          "Unknown";
+
+        const state = data.address.state || "";
+
+        document.getElementById("user-city").innerText = city;
+
+        localStorage.setItem("userCity", city);
+
+        checkDelivery(city);
+
+      } catch (err) {
+
+        showToast("Unable to detect city", "error");
+
+      }
+
+    },
+
+    () => {
+      showToast("Location permission denied", "error");
+    }
+
+  );
+
+}
+
+// ─── DELIVERY CHECKER ─────────────────────────────────
+
+function checkDelivery(city) {
+
+  if (DELIVERY_CITIES.includes(city)) {
+
+    const store = STORES.find(s => s.city === city);
+
+    if (store) {
+
+      showToast(
+        `✅ Delivery available from ${store.name}`,
+        "success"
+      );
+
+      updateCityPricing(store.deliveryFee);
+
+    } else {
+
+      showToast(
+        `✅ Delivery available in ${city}`,
+        "success"
+      );
+
+    }
+
+  } else {
+
+    showToast(
+      `❌ Delivery unavailable in ${city}`,
+      "error"
+    );
+
+  }
+
+}
+
+// ─── DELIVERY PRICING ─────────────────────────────────
+
+function updateCityPricing(fee) {
+
+  localStorage.setItem("deliveryFee", fee);
+
+}
+
+// ─── LOAD SAVED LOCATION ──────────────────────────────
+
+window.addEventListener("load", () => {
+
+  const savedCity = localStorage.getItem("userCity");
+
+  if(savedCity){
+
+    document.getElementById("user-city").innerText = savedCity;
+
+  }
+
+});
 function showToast(msg, type='info') {
   const c = document.getElementById('toast-container');
   const d = document.createElement('div');
@@ -1604,13 +1750,36 @@ function showTrackingModal() {
         <div class="track-step-content"><div class="track-step-title">Delivered</div><div class="track-step-sub">Estimated arrival: 6:15 – 6:30 PM</div></div>
       </div>
     </div>
-    <div class="track-map">
+    <div id="map" class="track-map"></div>
       <div class="map-dots">🗺️</div>
       <div>Live tracking map</div>
       <div style="font-size:0.68rem;color:var(--text3)">Google Maps integration required (API key needed)</div>
     </div>
   `;
   document.getElementById('modal-overlay').classList.add('open');
+  setTimeout(loadMap, 500);
+}
+  function loadMap() {
+
+  const mapDiv = document.getElementById("map");
+
+  if(!mapDiv) return;
+
+  mapDiv.innerHTML = "";
+
+  const map = L.map("map").setView([window.userLat || 13.0827, window.userLng || 80.2707], 13)
+
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    attribution: "© OpenStreetMap"
+  }).addTo(map);
+L.marker([
+  window.userLat || 13.0827,
+  window.userLng || 80.2707
+])
+    .addTo(map)
+    .bindPopup("🚚 Delivery Partner")
+    .openPopup();
+
 }
 
 // ─── ADMIN ────────────────────────────────────────────────────────────────
