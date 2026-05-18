@@ -1523,7 +1523,6 @@ window.onload = () => {
   }
 
 };
-
 // ─── NAVIGATION ───────────────────────────────────────────────────────────
 function showPage(page, data) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
@@ -1593,7 +1592,9 @@ function renderTrending() {
 }
 
 function renderBestSellers() {
-  const prods = PRODUCTS.filter(p=>p.reviews>1000).slice(0,8);
+ const prods = [...PRODUCTS]
+  .sort(() => Math.random() - 0.5)
+  .slice(0, 8);
   document.getElementById('bestseller-grid').innerHTML = prods.map(renderProductCard).join('');
 }
 
@@ -1728,7 +1729,10 @@ function renderCart() {
     el.innerHTML = `<div class="empty-cart"><div class="empty-icon">🛒</div><h3>Your cart is empty</h3><p>Browse our premium spirits collection and add something amazing.</p><button class="btn-primary" style="margin-top:1.25rem" onclick="showPage('products')">🥃 Shop Now</button></div>`;
     return;
   }
-  const items = cart.map(i => ({ ...i, product: PRODUCTS.find(p=>p.id===i.id) })).filter(i=>i.product);
+  const items = cart.map(i => ({
+  ...i,
+  product: PRODUCTS.find(p => p.id === i.id)
+})).filter(i => i.product);
   const subtotal = items.reduce((s,i)=>s+i.product.price*i.qty,0);
   const delivery = subtotal >= 1999 ? 0 : 99;
   const tax = Math.round(subtotal*0.12);
@@ -1802,7 +1806,10 @@ function renderWishlist() {
 
 // ─── CHECKOUT ─────────────────────────────────────────────────────────────
 function renderCheckout() {
-  const items = cart.map(i=>({...i,product:PRODUCTS.find(p=>p.id===i.id)})).filter(i=>i.product);
+ const items = cart.map(i => ({
+  ...i,
+  product: PRODUCTS.find(p => p.id === i.id)
+})).filter(i => i.product);
   const subtotal=items.reduce((s,i)=>s+i.product.price*i.qty,0);
   const tax=Math.round(subtotal*0.12);
   const total=subtotal+(subtotal>=1999?0:99)+tax;
@@ -2139,7 +2146,10 @@ function loadMap() {
 
   mapDiv.innerHTML = "";
 
-  const map = L.map("map").setView([window.userLat || 13.0827, window.userLng || 80.2707], 13)
+  const map = L.map("map").setView(
+  [window.userLat || 13.0827, window.userLng || 80.2707],
+  13
+);
 
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     attribution: "© OpenStreetMap"
@@ -2349,11 +2359,32 @@ updateCartBadge();
 </div>
   <script>
 
-function enterSite(){
+function enterSite() {
 
-  document.getElementById("age-gate").style.display = "none";
+  try {
 
-  alert("Button works");
+    sessionStorage.setItem(
+      'omshakti-age',
+      '1'
+    );
+
+    document
+      .getElementById('age-gate')
+      .classList.add('hidden');
+
+    initApp();
+
+    if(typeof autoUpdateOrders === "function"){
+      autoUpdateOrders();
+    }
+
+  } catch(error){
+
+    console.log(error);
+
+    alert("Website loading error");
+
+  }
 
 }
 
