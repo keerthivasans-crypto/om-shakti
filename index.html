@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>OM SHAKTI — Premium Spirits Delivered</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spiritz — Premium Spirits Delivered</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -307,7 +307,7 @@
   .section-divider { height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); margin: 0 1.5rem; }
 
   /* ─── CATEGORY PILLS ─── */
-  .category-row { display: flex; gap: 0.75rem; overflow-x: auto; padding-bottom: 0.5rem; scrollbar-width: none; webkit-overflow-scrolling: touch;}
+  .category-row { display: flex; gap: 0.75rem; overflow-x: auto; padding-bottom: 0.5rem; scrollbar-width: none; }
   .category-row::-webkit-scrollbar { display: none; }
   .cat-pill {
     display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
@@ -726,216 +726,24 @@
     .footer-grid { grid-template-columns: 1fr 1fr; }
     .nav-location { display: none; }
   }
- @media (max-width: 768px) {
-
-  body{
-    overflow-x:hidden;
+  @media (max-width: 600px) {
+    .product-grid { grid-template-columns: 1fr 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .admin-stats { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .hero-cta { flex-direction: column; }
+    .hero-stats { gap: 1rem; }
+    .nav-inner { gap: 0.75rem; }
+    .nav-search { max-width: none; }
   }
-
-  .nav-inner{
-    flex-wrap:wrap;
-    height:auto;
-    padding:12px;
-    gap:10px;
-  }
-
-  .nav-logo{
-    font-size:2rem;
-  }
-
-  .nav-location{
-    width:100%;
-    justify-content:center;
-  }
-
-  .nav-search{
-    width:100%;
-    max-width:100%;
-    order:3;
-  }
-
-  .nav-search input{
-    font-size:16px;
-  }
-
-  .nav-actions{
-    width:100%;
-    justify-content:space-between;
-    overflow-x:auto;
-    padding-bottom:5px;
-  }
-
-  .nav-btn{
-    min-width:max-content;
-    font-size:12px;
-    padding:8px 12px;
-  }
-
-  .hero{
-    min-height:auto;
-    padding:40px 0;
-  }
-
-  .hero-inner{
-    grid-template-columns:1fr;
-    padding:20px;
-  }
-
-  .hero-title{
-    font-size:3rem;
-    line-height:1.2;
-  }
-
-  .hero-subtitle{
-    font-size:14px;
-  }
-
-  .hero-cta{
-    flex-direction:column;
-    width:100%;
-  }
-
-  .btn-primary,
-  .btn-secondary{
-    width:100%;
-    justify-content:center;
-  }
-
-  .hero-stats{
-    justify-content:space-between;
-    gap:10px;
-  }
-
-  .product-grid{
-    grid-template-columns:1fr 1fr;
-    gap:12px;
-  }
-
-  .product-card{
-    width:100%;
-  }
-
-  .product-img{
-    height:140px;
-    font-size:3rem;
-  }
-
-  .product-name{
-    font-size:13px;
-  }
-
-  .product-price{
-    font-size:1rem;
-  }
-
-  .section{
-    padding:24px 14px;
-  }
-
-  .section-title{
-    font-size:1.5rem;
-  }
-
-  .flash-banner{
-    flex-direction:column;
-    text-align:center;
-  }
-
-  .detail-grid,
-  .cart-grid,
-  .checkout-grid,
-  .dashboard-grid,
-  .filter-sidebar{
-    grid-template-columns:1fr;
-  }
-
-  .detail-img-area{
-    height:280px;
-    font-size:5rem;
-  }
-
-  .detail-actions{
-    flex-direction:column;
-  }
-
-  .cart-summary{
-    position:relative;
-    top:0;
-  }
-
-  .footer-grid{
-    grid-template-columns:1fr;
-    gap:25px;
-  }
-
-  .footer-bottom{
-    flex-direction:column;
-    gap:10px;
-    text-align:center;
-  }
-
-  .admin-layout{
-    grid-template-columns:1fr;
-  }
-
-  .admin-sidebar{
-    display:none;
-  }
-
-  .admin-stats{
-    grid-template-columns:1fr;
-  }
-
-  .table-container{
-    overflow-x:auto;
-  }
-
-  table{
-    min-width:700px;
-  }
-   .mobile-bottom-nav{
-  position:fixed;
-  bottom:0;
-  left:0;
-  width:100%;
-  background:#0e1118;
-  border-top:1px solid #2a2f3f;
-  display:flex;
-  justify-content:space-around;
-  padding:10px 0;
-  z-index:9999;
-}
-
-.mobile-bottom-nav button{
-  background:none;
-  border:none;
-  color:#fff;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  font-size:18px;
-  gap:4px;
-}
-
-.mobile-bottom-nav span{
-  font-size:11px;
-}
-
-body{
-  padding-bottom:80px;
-}
-
-}
 </style>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </head>
 <body>
 
 <!-- AGE GATE -->
 <div id="age-gate">
   <div class="age-gate-logo">
-   OM SHAKTI
+    Spiritz
     <span>Premium Spirits Delivered</span>
   </div>
   <div class="age-gate-ornament"></div>
@@ -946,7 +754,7 @@ body{
       <button class="btn-age-yes" onclick="enterSite()">Yes, I'm 21+</button>
       <button class="btn-age-no" onclick="window.location='https://www.responsibility.org/'">No, Exit</button>
     </div>
-    <p class="age-legal">By clicking "Yes, I'm 21+", you confirm you are of legal drinking age in your jurisdiction. Omshakti promotes responsible drinking. Delivery available only in permitted areas during legal hours (11AM–10PM).</p>
+    <p class="age-legal">By clicking "Yes, I'm 21+", you confirm you are of legal drinking age in your jurisdiction. Spiritz promotes responsible drinking. Delivery available only in permitted areas during legal hours (11AM–10PM).</p>
   </div>
 </div>
 
@@ -963,11 +771,10 @@ body{
 <!-- NAVBAR -->
 <nav id="navbar">
   <div class="nav-inner">
-    <a class="nav-logo" onclick="showPage('home')">OM SHAKTI</a>
-   <div class="nav-location" onclick="detectLocation()">
-  📍 <strong id="user-city">Detect Location</strong>
-  <span style="color:var(--text3)"> ▾</span>
-</div>
+    <a class="nav-logo" onclick="showPage('home')">Spiritz</a>
+    <div class="nav-location" onclick="showToast('📍 Madurai, Tamil Nadu — Delivery available', 'info')">
+      📍 <strong>Madurai</strong><span style="color:var(--text3)"> ▾</span>
+    </div>
     <div class="nav-search">
       <input type="text" id="search-input" placeholder="Search whisky, gin, wine, beer..." onkeydown="if(event.key==='Enter')doSearch()">
       <button onclick="doSearch()">🔍</button>
@@ -1019,7 +826,7 @@ body{
         <div class="resp-icon">🍃</div>
         <div>
           <div class="resp-title">Responsible Drinking Notice</div>
-          <div class="resp-text">Omshakti encourages responsible consumption. Do not drink and drive. Keep alcohol away from minors. Delivery available only between 11 AM – 10 PM. We verify age at delivery. Pregnant women should avoid alcohol.</div>
+          <div class="resp-text">Spiritz encourages responsible consumption. Do not drink and drive. Keep alcohol away from minors. Delivery available only between 11 AM – 10 PM. We verify age at delivery. Pregnant women should avoid alcohol.</div>
         </div>
       </div>
     </div>
@@ -1200,7 +1007,7 @@ body{
 <footer>
   <div class="footer-grid">
     <div>
-      <div class="footer-brand-name">OM SHAKTI</div>
+      <div class="footer-brand-name">Spiritz</div>
       <div class="footer-tagline">India's most trusted premium spirits delivery platform. FSSAI licensed. Age-verified. Responsibly serving adults since 2020.</div>
       <div class="footer-legal">🔞 By using this service, you confirm you are 21 years or older. Drinking is injurious to health. Do not drink and drive. Available only in legally permitted areas.</div>
     </div>
@@ -1229,7 +1036,7 @@ body{
     </div>
   </div>
   <div class="footer-bottom">
-    <div>© 2025 Omshakti. All rights reserved. 🔞 21+ Only.</div>
+    <div>© 2025 Spiritz. All rights reserved. 🔞 21+ Only.</div>
     <div style="display:flex;gap:0.75rem;align-items:center">
       <span>💳 Visa</span><span>💳 Mastercard</span><span>📱 UPI</span><span>🏦 NetBanking</span>
     </div>
@@ -1270,180 +1077,23 @@ const CATEGORIES = [
   { name:'Cocktails', emoji:'🍸' },
 ];
 
-let cart = JSON.parse(localStorage.getItem('omshakti-cart') || '[]');
-let wishlist = JSON.parse(localStorage.getItem('omshakti-wish') || '[]');
+// ─── STATE ───────────────────────────────────────────────────────────────
+let cart = JSON.parse(localStorage.getItem('spiritz-cart') || '[]');
+let wishlist = JSON.parse(localStorage.getItem('spiritz-wish') || '[]');
 let currentPage = 'home';
 let currentProduct = null;
 let checkoutStep = 1;
 let timerInterval = null;
 
-function saveCart() { localStorage.setItem('omshakti-cart', JSON.stringify(cart)); updateCartBadge(); }
-function saveWish() { localStorage.setItem('omshakti-wish', JSON.stringify(wishlist)); }
+// ─── UTILITY ─────────────────────────────────────────────────────────────
+function saveCart() { localStorage.setItem('spiritz-cart', JSON.stringify(cart)); updateCartBadge(); }
+function saveWish() { localStorage.setItem('spiritz-wish', JSON.stringify(wishlist)); }
 function updateCartBadge() {
   const total = cart.reduce((s,i)=>s+i.qty,0);
   document.getElementById('cart-badge').textContent = total;
 }
 function fmt(n) { return '₹' + n.toLocaleString('en-IN'); }
 function stars(r) { return '★'.repeat(Math.floor(r)) + (r%1>=0.5?'½':'') + '☆'.repeat(5-Math.ceil(r)); }
-
-const DELIVERY_CITIES = [
-
-  "Ariyalur",
-  "Chengalpattu",
-  "Chennai",
-  "Coimbatore",
-  "Cuddalore",
-  "Dharmapuri",
-  "Dindigul",
-  "Erode",
-  "Kallakurichi",
-  "Kancheepuram",
-  "Karur",
-  "Krishnagiri",
-  "Madurai",
-  "Mayiladuthurai",
-  "Nagapattinam",
-  "Kanniyakumari",
-  "Namakkal",
-  "Nilgiris",
-  "Perambalur",
-  "Pudukkottai",
-  "Ramanathapuram",
-  "Ranipet",
-  "Salem",
-  "Sivagangai",
-  "Tenkasi",
-  "Thanjavur",
-  "Theni",
-  "Thoothukudi",
-  "Tiruchirappalli",
-  "Tirunelveli",
-  "Tirupathur",
-  "Tiruppur",
-  "Thiruvallur",
-  "Tiruvannamalai",
-  "Tiruvarur",
-  "Vellore",
-  "Viluppuram",
-  "Virudhunagar"
-
-];
-
-// Example nearest stores
-const STORES = [
-  {
-    city: "Chennai",
-    name: "Omshakti Chennai Central",
-    deliveryFee: 99
-  },
-  {
-    city: "Madurai",
-    name: "Omshakti Madurai Elite",
-    deliveryFee: 49
-  },
-  {
-    city: "Bangalore",
-    name: "Omshakti Bangalore Premium",
-    deliveryFee: 129
-  }
-];
-
-function detectLocation() {
-
-  if (!navigator.geolocation) {
-    showToast("Geolocation not supported", "error");
-    return;
-  }
-
-  showToast("📍 Detecting your location...", "info");
-
-  navigator.geolocation.getCurrentPosition(
-    async (position) => {
-
-      const lat = position.coords.latitude;
-      const lng = position.coords.longitude;
-      window.userLat = lat;
-window.userLng = lng;
-
-      const url =
-        `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`;
-
-      try {
-
-        const response = await fetch(url);
-        const data = await response.json();
-
-        const city =
-          data.address.city ||
-          data.address.town ||
-          data.address.state_district ||
-          "Unknown";
-
-        const state = data.address.state || "";
-        if(state !== "Tamil Nadu"){
-
-  showToast(
-    "⚠️ Currently service mainly available in Tamil Nadu",
-    "info"
-  );
-
-}
-
-        document.getElementById("user-city").innerText = city;
-
-        localStorage.setItem("userCity", city);
-
-        checkDelivery(city);
-
-      } catch (err) {
-
-        showToast("Unable to detect city", "error");
-
-      }
-
-    },
-
-    () => {
-      showToast("Location permission denied", "error");
-    }
-
-  );
-
-}
-
-function checkDelivery(city) {
-
-  const normalizedCity = city.trim();
-
-  if (DELIVERY_CITIES.includes(normalizedCity)) {
-
-    showToast(
-      `✅ Alcohol delivery available in ${normalizedCity}`,
-      "success"
-    );
-
-    document.getElementById("user-city").innerText =
-      normalizedCity;
-
-  } else {
-
-    showToast(
-      `❌ Currently delivery unavailable in ${normalizedCity}`,
-      "error"
-    );
-
-  }
-
-}
-function updateCityPricing(fee) {
-  localStorage.setItem("deliveryFee", fee);
-}
-window.addEventListener("load", () => {
-  const savedCity = localStorage.getItem("userCity");
-  if(savedCity){
-    document.getElementById("user-city").innerText = savedCity;
-  }
-});
 
 function showToast(msg, type='info') {
   const c = document.getElementById('toast-container');
@@ -1457,9 +1107,9 @@ function showToast(msg, type='info') {
 function showModal(type) {
   const body = document.getElementById('modal-body');
   let html = '';
-  if (type === 'terms') html = `<div class="modal-title">Terms & Conditions</div><p style="color:var(--text2);font-size:0.82rem;line-height:1.8">1. You must be 21+ to use Omshakti.<br>2. Delivery is subject to local regulations.<br>3. All sales are final after dispatch.<br>4. We verify age at delivery.<br>5. Products are sold only in permitted regions.<br>6. Omshakti reserves the right to refuse orders.<br>7. Prices include all applicable taxes.<br><br>Last updated: Dec 2025</p>`;
-  else if (type === 'privacy') html = `<div class="modal-title">Privacy Policy</div><p style="color:var(--text2);font-size:0.82rem;line-height:1.8">We collect only the data necessary to process your orders securely. Your personal information is never sold to third parties. Age verification data is stored encrypted. We comply with India's Data Protection Act. You may request deletion of your account data at any time by contacting support@omshakti.in</p>`;
-  else if (type === 'resp') html = `<div class="modal-title">Responsible Drinking</div><p style="color:var(--text2);font-size:0.82rem;line-height:1.8">🍃 Omshakti promotes responsible consumption.<br><br>• Never drink and drive<br>• Keep alcohol away from minors<br>• Drink in moderation<br>• Pregnant women should avoid alcohol<br>• Be aware of medication interactions<br>• Watch out for your friends<br><br>📞 Helpline: 1800-11-0031 (NIMHANS alcohol helpline)</p>`;
+  if (type === 'terms') html = `<div class="modal-title">Terms & Conditions</div><p style="color:var(--text2);font-size:0.82rem;line-height:1.8">1. You must be 21+ to use Spiritz.<br>2. Delivery is subject to local regulations.<br>3. All sales are final after dispatch.<br>4. We verify age at delivery.<br>5. Products are sold only in permitted regions.<br>6. Spiritz reserves the right to refuse orders.<br>7. Prices include all applicable taxes.<br><br>Last updated: Dec 2025</p>`;
+  else if (type === 'privacy') html = `<div class="modal-title">Privacy Policy</div><p style="color:var(--text2);font-size:0.82rem;line-height:1.8">We collect only the data necessary to process your orders securely. Your personal information is never sold to third parties. Age verification data is stored encrypted. We comply with India's Data Protection Act. You may request deletion of your account data at any time by contacting support@spiritz.in</p>`;
+  else if (type === 'resp') html = `<div class="modal-title">Responsible Drinking</div><p style="color:var(--text2);font-size:0.82rem;line-height:1.8">🍃 Spiritz promotes responsible consumption.<br><br>• Never drink and drive<br>• Keep alcohol away from minors<br>• Drink in moderation<br>• Pregnant women should avoid alcohol<br>• Be aware of medication interactions<br>• Watch out for your friends<br><br>📞 Helpline: 1800-11-0031 (NIMHANS alcohol helpline)</p>`;
   else if (type === 'contact') html = `<div class="modal-title">Contact Us</div><div class="form-group"><label class="form-label">Name</label><input class="form-input" placeholder="Your name"></div><div class="form-group"><label class="form-label">Email</label><input class="form-input" type="email" placeholder="your@email.com"></div><div class="form-group"><label class="form-label">Message</label><textarea class="form-input" rows="4" placeholder="How can we help?"></textarea></div><button class="btn-primary" onclick="showToast('Message sent! We\'ll respond within 24hr','success');closeModalDirect()" style="width:100%;justify-content:center">Send Message</button>`;
   body.innerHTML = html;
   document.getElementById('modal-overlay').classList.add('open');
@@ -1469,44 +1119,17 @@ function closeModalDirect() { document.getElementById('modal-overlay').classList
 
 // ─── AGE GATE ─────────────────────────────────────────────────────────────
 function enterSite() {
-
-  sessionStorage.setItem(
-    'omshakti-age',
-    '1'
-  );
-
-  document
-    .getElementById('age-gate')
-    .classList.add('hidden');
-
+  sessionStorage.setItem('spiritz-age', '1');
+  document.getElementById('age-gate').classList.add('hidden');
   initApp();
-
 }
 window.onload = () => {
-
-  try {
-
-    if (sessionStorage.getItem('omshakti-age')) {
-
-      document
-        .getElementById('age-gate')
-        .classList.add('hidden');
-
-      initApp();
-
-      if(typeof autoUpdateOrders === "function"){
-        autoUpdateOrders();
-      }
-
-    }
-
-  } catch(error){
-
-    console.log(error);
-
+  if (sessionStorage.getItem('spiritz-age')) {
+    document.getElementById('age-gate').classList.add('hidden');
+    initApp();
   }
-
 };
+
 // ─── NAVIGATION ───────────────────────────────────────────────────────────
 function showPage(page, data) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
@@ -1524,51 +1147,13 @@ function showPage(page, data) {
 
 // ─── INIT ─────────────────────────────────────────────────────────────────
 function initApp() {
-
-  try {
-    updateCartBadge();
-  } catch(e){
-    console.log("Cart error", e);
-  }
-
-  try {
-    renderCategories();
-  } catch(e){
-    console.log("Category error", e);
-  }
-
-  try {
-    renderHeroVisual();
-  } catch(e){
-    console.log("Hero error", e);
-  }
-
-  try {
-    renderTrending();
-  } catch(e){
-    console.log("Trending error", e);
-  }
-
-  try {
-    renderBestSellers();
-  } catch(e){
-    console.log("Best seller error", e);
-  }
-
-  try {
-    startFlashTimer();
-  } catch(e){
-    console.log("Timer error", e);
-  }
-
-  try {
-    startScrollHandler();
-  } catch(e){
-    console.log("Scroll error", e);
-  }
-
-  console.log("OM SHAKTI loaded successfully");
-
+  updateCartBadge();
+  renderCategories();
+  renderHeroVisual();
+  renderTrending();
+  renderBestSellers();
+  startFlashTimer();
+  startScrollHandler();
 }
 
 function renderHeroVisual() {
@@ -1609,20 +1194,12 @@ function filterByCategory(cat, el) {
 }
 
 function renderTrending() {
-
-  const prods = [...PRODUCTS]
-    .sort(() => Math.random() - 0.5)
-    .slice(0, 8);
-
-  document.getElementById('trending-grid').innerHTML =
-    prods.map(renderProductCard).join('');
-
+  const prods = [...PRODUCTS].sort(()=>Math.random()-0.5).slice(0,8);
+  document.getElementById('trending-grid').innerHTML = prods.map(renderProductCard).join('');
 }
 
 function renderBestSellers() {
- const prods = [...PRODUCTS]
-  .sort(() => Math.random() - 0.5)
-  .slice(0, 8);
+  const prods = PRODUCTS.filter(p=>p.reviews>1000).slice(0,8);
   document.getElementById('bestseller-grid').innerHTML = prods.map(renderProductCard).join('');
 }
 
@@ -1757,10 +1334,7 @@ function renderCart() {
     el.innerHTML = `<div class="empty-cart"><div class="empty-icon">🛒</div><h3>Your cart is empty</h3><p>Browse our premium spirits collection and add something amazing.</p><button class="btn-primary" style="margin-top:1.25rem" onclick="showPage('products')">🥃 Shop Now</button></div>`;
     return;
   }
- const items = cart.map(i => ({
-  ...i,
-  product: PRODUCTS.find(p => p.id === i.id)
-})).filter(i => i.product);
+  const items = cart.map(i => ({ ...i, product: PRODUCTS.find(p=>p.id===i.id) })).filter(i=>i.product);
   const subtotal = items.reduce((s,i)=>s+i.product.price*i.qty,0);
   const delivery = subtotal >= 1999 ? 0 : 99;
   const tax = Math.round(subtotal*0.12);
@@ -1813,7 +1387,7 @@ function renderCart() {
 }
 function applyCoupon() {
   const v = document.getElementById('coupon-in').value.toUpperCase().trim();
-  if (v==='OMSHAKTI10') showToast('✅ 10% off applied!','success');
+  if (v==='SPIRITZ10') showToast('✅ 10% off applied!','success');
   else if (v==='WELCOME') showToast('✅ ₹200 off applied!','success');
   else showToast('❌ Invalid coupon code','error');
 }
@@ -1834,10 +1408,7 @@ function renderWishlist() {
 
 // ─── CHECKOUT ─────────────────────────────────────────────────────────────
 function renderCheckout() {
- const items = cart.map(i => ({
-  ...i,
-  product: PRODUCTS.find(p => p.id === i.id)
-})).filter(i => i.product);
+  const items = cart.map(i=>({...i,product:PRODUCTS.find(p=>p.id===i.id)})).filter(i=>i.product);
   const subtotal=items.reduce((s,i)=>s+i.product.price*i.qty,0);
   const tax=Math.round(subtotal*0.12);
   const total=subtotal+(subtotal>=1999?0:99)+tax;
@@ -1949,107 +1520,19 @@ function renderReviewStep(items) { const total=items.reduce((s,i)=>s+i.product.p
 `; }
 function selectPayment(el) { document.querySelectorAll('.payment-method').forEach(m=>m.classList.remove('active')); el.classList.add('active'); }
 function placeOrder() {
-
-  const items = cart.map(i => ({
-    ...i,
-    product: PRODUCTS.find(p => p.id === i.id)
-  }));
-
-  const subtotal = items.reduce(
-    (s, i) => s + i.product.price * i.qty,
-    0
-  );
-
-  const total =
-    subtotal +
-    Math.round(subtotal * 0.12) +
-    (subtotal >= 1999 ? 0 : 99);
-
-  const newOrder = {
-
-    id:
-      "OM-" +
-      Math.random()
-        .toString(36)
-        .slice(2, 8)
-        .toUpperCase(),
-
-    items,
-
-    status: "processing",
-
-    total,
-
-    date: new Date().toLocaleDateString("en-IN"),
-
-    time: new Date().toLocaleTimeString(),
-
-  };
-
-  const orders =
-    JSON.parse(
-      localStorage.getItem("omshakti-orders")
-    ) || [];
-
-  orders.unshift(newOrder);
-
-  localStorage.setItem(
-    "omshakti-orders",
-    JSON.stringify(orders)
-  );
-
-  cart = [];
-
-  saveCart();
-
+  cart = []; saveCart();
   checkoutStep = 1;
-
-  showToast(
-    `🎉 Order placed successfully!`,
-    "success"
-  );
-
-  renderDashboard();
-
-  setTimeout(() => {
-    showPage("dashboard");
-  }, 800);
-
+  showToast('🎉 Order placed successfully! Tracking ID: SPR-'+Math.random().toString(36).slice(2,8).toUpperCase(), 'success');
+  setTimeout(()=>showPage('dashboard'),800);
 }
-function autoUpdateOrders(){
 
-  let orders =
-    JSON.parse(
-      localStorage.getItem("omshakti-orders")
-    ) || [];
-
-  orders = orders.map(order => {
-
-    if(order.status === "processing"){
-
-      order.status = "Preparing";
-
-    }
-    else if(order.status === "Preparing"){
-
-      order.status = "Out for Delivery";
-
-    }
-
-    return order;
-
-  });
-
-  localStorage.setItem(
-    "omshakti-orders",
-    JSON.stringify(orders)
-  );
-
-}
 // ─── DASHBOARD ────────────────────────────────────────────────────────────
 function renderDashboard() {
- const sampleOrders =
-  JSON.parse(localStorage.getItem("omshakti-orders")) || [];
+  const sampleOrders = [
+    { id:'SPR-X72KA', items:[PRODUCTS[0],PRODUCTS[4]], status:'delivered', total:4420, date:'12 Dec 2025' },
+    { id:'SPR-9QWRM', items:[PRODUCTS[1]], status:'processing', total:6800, date:'15 Dec 2025' },
+    { id:'SPR-PLWZB', items:[PRODUCTS[2],PRODUCTS[9]], status:'transit', total:1000, date:'16 Dec 2025' },
+  ];
   document.getElementById('dashboard-content').innerHTML=`
     <div class="dashboard-grid">
       <div class="dash-sidebar">
@@ -2075,55 +1558,19 @@ function renderDashboard() {
         <div class="table-container">
           <div class="table-header"><h3>Recent Orders</h3><button class="btn-secondary" style="padding:0.4rem 0.9rem;font-size:0.72rem" onclick="showTrackingModal()">🚚 Track Order</button></div>
           <div class="orders-list" style="padding:0 0.25rem 0.25rem">
-           ${sampleOrders.length
-? sampleOrders.map(order => `
-
-<div class="order-card">
-
-  <div class="order-top">
-
-    <div>
-      <div class="order-id">
-        ${order.id}
-      </div>
-
-      <div class="order-date">
-        ${order.date}
+            ${sampleOrders.map(o=>`
+              <div class="order-row" onclick="showTrackingModal()">
+                <div class="order-id">${o.id}<div style="font-size:0.65rem;color:var(--text3);margin-top:2px">${o.date}</div></div>
+                <div class="order-items-preview">${o.items.map(p=>`<div class="order-item-thumb">${p.emoji}</div>`).join('')}</div>
+                <div class="order-status status-${o.status}">${o.status.charAt(0).toUpperCase()+o.status.slice(1)}</div>
+                <div class="order-total">${fmt(o.total)}</div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
       </div>
     </div>
-
-    <div class="order-status">
-      ${order.status}
-    </div>
-
-  </div>
-
-  <div class="order-products">
-
-    ${order.items.map(i => `
-
-      <div class="order-product">
-        ${i.product.emoji}
-      </div>
-
-    `).join("")}
-
-  </div>
-
-  <div class="order-total">
-    ${fmt(order.total)}
-  </div>
-
-</div>
-
-`).join("")
-:
-`
-<div class="empty-cart">
-  <div class="empty-icon">📦</div>
-  <h3>No Orders Yet</h3>
-</div>
-`
+  `;
 }
 
 function showTrackingModal() {
@@ -2157,46 +1604,20 @@ function showTrackingModal() {
         <div class="track-step-content"><div class="track-step-title">Delivered</div><div class="track-step-sub">Estimated arrival: 6:15 – 6:30 PM</div></div>
       </div>
     </div>
-   <div id="map" class="track-map"></div>
+    <div class="track-map">
       <div class="map-dots">🗺️</div>
       <div>Live tracking map</div>
       <div style="font-size:0.68rem;color:var(--text3)">Google Maps integration required (API key needed)</div>
     </div>
   `;
   document.getElementById('modal-overlay').classList.add('open');
-  setTimeout(loadMap, 500);
 }
-function loadMap() {
 
-  const mapDiv = document.getElementById("map");
-
-  if(!mapDiv) return;
-
-  mapDiv.innerHTML = "";
-
-  const map = L.map("map").setView(
-  [window.userLat || 13.0827, window.userLng || 80.2707],
-  13
-);
-
-  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    attribution: "© OpenStreetMap"
-  }).addTo(map);
-
-  L.marker([
-  window.userLat || 13.0827,
-  window.userLng || 80.2707
-])
-    .addTo(map)
-    .bindPopup("🚚 Delivery Partner")
-    .openPopup();
-
-}
 // ─── ADMIN ────────────────────────────────────────────────────────────────
 function renderAdmin() {
   document.getElementById('admin-content').innerHTML = `
     <div class="admin-header">
-      <h2>⚙️ Admin Dashboard — OM SHAKTI</h2>
+      <h2>⚙️ Admin Dashboard — Spiritz</h2>
       <span class="footer-badge">✅ Super Admin</span>
     </div>
     <div class="admin-layout">
@@ -2371,49 +1792,6 @@ document.addEventListener('click', e => {
 
 // ─── INIT ─────────────────────────────────────────────────────────────────
 updateCartBadge();
-</script>
-  <div class="mobile-bottom-nav">
-
-  <button onclick="showPage('home')">🏠<span>Home</span></button>
-
-  <button onclick="showPage('products')">🥃<span>Shop</span></button>
-
-  <button onclick="showPage('wishlist')">❤️<span>Wishlist</span></button>
-
-  <button onclick="showPage('cart')">🛒<span>Cart</span></button>
-
-  <button onclick="showPage('dashboard')">👤<span>Account</span></button>
-
-</div>
-  <script>
-
-function enterSite() {
-
-  try {
-
-    sessionStorage.setItem(
-      'omshakti-age',
-      '1'
-    );
-
-    document
-      .getElementById('age-gate')
-      .classList.add('hidden');
-
-    initApp();
-
-    if(typeof autoUpdateOrders === "function"){
-      autoUpdateOrders();
-    }
-
-  } catch(error){
-
-    console.log(error);
-
-  }
-
-}
-
 </script>
 </body>
 </html>
