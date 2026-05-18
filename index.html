@@ -1291,10 +1291,46 @@ function stars(r) { return '★'.repeat(Math.floor(r)) + (r%1>=0.5?'½':'') + '�
 // ─── INDIA DELIVERY LOCATIONS ─────────────────────────
 
 const DELIVERY_CITIES = [
-  "Chennai","Madurai","Coimbatore","Salem","Trichy",
-  "Bangalore","Mumbai","Delhi","Hyderabad","Pune",
-  "Kolkata","Ahmedabad","Goa","Jaipur","Kochi",
-  "Lucknow","Surat","Indore","Bhopal","Vizag"
+
+  "Ariyalur",
+  "Chengalpattu",
+  "Chennai",
+  "Coimbatore",
+  "Cuddalore",
+  "Dharmapuri",
+  "Dindigul",
+  "Erode",
+  "Kallakurichi",
+  "Kancheepuram",
+  "Karur",
+  "Krishnagiri",
+  "Madurai",
+  "Mayiladuthurai",
+  "Nagapattinam",
+  "Kanniyakumari",
+  "Namakkal",
+  "Nilgiris",
+  "Perambalur",
+  "Pudukkottai",
+  "Ramanathapuram",
+  "Ranipet",
+  "Salem",
+  "Sivagangai",
+  "Tenkasi",
+  "Thanjavur",
+  "Theni",
+  "Thoothukudi",
+  "Tiruchirappalli",
+  "Tirunelveli",
+  "Tirupathur",
+  "Tiruppur",
+  "Thiruvallur",
+  "Tiruvannamalai",
+  "Tiruvarur",
+  "Vellore",
+  "Viluppuram",
+  "Virudhunagar"
+
 ];
 
 // Example nearest stores
@@ -1350,6 +1386,14 @@ window.userLng = lng;
           "Unknown";
 
         const state = data.address.state || "";
+        if(state !== "Tamil Nadu"){
+
+  showToast(
+    "⚠️ Currently service mainly available in Tamil Nadu",
+    "info"
+  );
+
+}
 
         document.getElementById("user-city").innerText = city;
 
@@ -1377,32 +1421,22 @@ window.userLng = lng;
 
 function checkDelivery(city) {
 
-  if (DELIVERY_CITIES.includes(city)) {
+  const normalizedCity = city.trim();
 
-    const store = STORES.find(s => s.city === city);
+  if (DELIVERY_CITIES.includes(normalizedCity)) {
 
-    if (store) {
+    showToast(
+      `✅ Alcohol delivery available in ${normalizedCity}`,
+      "success"
+    );
 
-      showToast(
-        `✅ Delivery available from ${store.name}`,
-        "success"
-      );
-
-      updateCityPricing(store.deliveryFee);
-
-    } else {
-
-      showToast(
-        `✅ Delivery available in ${city}`,
-        "success"
-      );
-
-    }
+    document.getElementById("user-city").innerText =
+      normalizedCity;
 
   } else {
 
     showToast(
-      `❌ Delivery unavailable in ${city}`,
+      `❌ Currently delivery unavailable in ${normalizedCity}`,
       "error"
     );
 
