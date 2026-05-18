@@ -1469,16 +1469,59 @@ function closeModalDirect() { document.getElementById('modal-overlay').classList
 
 // ─── AGE GATE ─────────────────────────────────────────────────────────────
 function enterSite() {
-  sessionStorage.setItem('omshakti-age', '1');
-  document.getElementById('age-gate').classList.add('hidden');
-  initApp();
+
+  try {
+
+    sessionStorage.setItem(
+      'omshakti-age',
+      '1'
+    );
+
+    document
+      .getElementById('age-gate')
+      .classList.add('hidden');
+
+    initApp();
+
+    if(typeof autoUpdateOrders === "function"){
+      autoUpdateOrders();
+    }
+
+  } catch(error){
+
+    console.log(error);
+
+    alert(
+      "Some feature caused an error. Check console."
+    );
+
+  }
+
 }
 window.onload = () => {
-  if (sessionStorage.getItem('omshakti-age')) {
-    document.getElementById('age-gate').classList.add('hidden');
-    initApp();
-    autoUpdateOrders();
+
+  try {
+
+    if (sessionStorage.getItem('omshakti-age')) {
+
+      document
+        .getElementById('age-gate')
+        .classList.add('hidden');
+
+      initApp();
+
+      if(typeof autoUpdateOrders === "function"){
+        autoUpdateOrders();
+      }
+
+    }
+
+  } catch(error){
+
+    console.log(error);
+
   }
+
 };
 
 // ─── NAVIGATION ───────────────────────────────────────────────────────────
