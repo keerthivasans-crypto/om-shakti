@@ -981,7 +981,15 @@ body{
         <span class="badge" id="cart-badge">0</span>
       </button>
       <button class="nav-btn" onclick="showPage('dashboard')"><span class="nav-icon">👤</span><span>Account</span></button>
-      <button class="nav-btn" onclick="showPage('admin')" style="color:var(--gold)"><span class="nav-icon">⚙️</span><span>Admin</span></button>
+      <button
+  class="nav-btn"
+  id="admin-btn"
+  onclick="openAdminLogin()"
+  style="color:var(--gold); display:none;"
+>
+  <span class="nav-icon">⚙️</span>
+  <span>Admin</span>
+</button><span class="nav-icon">⚙️</span><span>Admin</span></button>
     </div>
   </div>
 </nav>
@@ -1461,6 +1469,81 @@ window.addEventListener("load", () => {
   if(savedCity){
 
     document.getElementById("user-city").innerText = savedCity;
+
+  }
+
+});
+  // ─── ADMIN LOGIN SYSTEM ─────────────────────────────
+
+const ADMIN_PASSWORD = "omshakti@2026";
+
+function openAdminLogin() {
+
+  const pass = prompt("Enter Admin Password");
+
+  if(pass === ADMIN_PASSWORD){
+
+    sessionStorage.setItem("omshakti-admin", "true");
+
+    showToast(
+      "✅ Admin Access Granted",
+      "success"
+    );
+
+    showPage("admin");
+
+  } else {
+
+    showToast(
+      "❌ Wrong Password",
+      "error"
+    );
+
+  }
+
+}
+
+// show admin button only for admin
+window.addEventListener("load", () => {
+
+  if(
+    sessionStorage.getItem("omshakti-admin")
+    === "true"
+  ){
+
+    const btn =
+      document.getElementById("admin-btn");
+
+    if(btn){
+      btn.style.display = "flex";
+    }
+
+  }
+
+});
+
+// secret keyboard shortcut
+document.addEventListener("keydown", (e) => {
+
+  if(
+    e.ctrlKey &&
+    e.shiftKey &&
+    e.key.toLowerCase() === "a"
+  ){
+
+    const btn =
+      document.getElementById("admin-btn");
+
+    if(btn){
+
+      btn.style.display = "flex";
+
+      showToast(
+        "⚙️ Admin Mode Enabled",
+        "info"
+      );
+
+    }
 
   }
 
