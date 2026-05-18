@@ -1470,32 +1470,16 @@ function closeModalDirect() { document.getElementById('modal-overlay').classList
 // ─── AGE GATE ─────────────────────────────────────────────────────────────
 function enterSite() {
 
-  try {
+  sessionStorage.setItem(
+    'omshakti-age',
+    '1'
+  );
 
-    sessionStorage.setItem(
-      'omshakti-age',
-      '1'
-    );
+  document
+    .getElementById('age-gate')
+    .classList.add('hidden');
 
-    document
-      .getElementById('age-gate')
-      .classList.add('hidden');
-
-    initApp();
-
-    if(typeof autoUpdateOrders === "function"){
-      autoUpdateOrders();
-    }
-
-  } catch(error){
-
-    console.log(error);
-
-    alert(
-      "Some feature caused an error. Check console."
-    );
-
-  }
+  initApp();
 
 }
 window.onload = () => {
@@ -1540,13 +1524,51 @@ function showPage(page, data) {
 
 // ─── INIT ─────────────────────────────────────────────────────────────────
 function initApp() {
-  updateCartBadge();
-  renderCategories();
-  renderHeroVisual();
-  renderTrending();
-  renderBestSellers();
-  startFlashTimer();
-  startScrollHandler();
+
+  try {
+    updateCartBadge();
+  } catch(e){
+    console.log("Cart error", e);
+  }
+
+  try {
+    renderCategories();
+  } catch(e){
+    console.log("Category error", e);
+  }
+
+  try {
+    renderHeroVisual();
+  } catch(e){
+    console.log("Hero error", e);
+  }
+
+  try {
+    renderTrending();
+  } catch(e){
+    console.log("Trending error", e);
+  }
+
+  try {
+    renderBestSellers();
+  } catch(e){
+    console.log("Best seller error", e);
+  }
+
+  try {
+    startFlashTimer();
+  } catch(e){
+    console.log("Timer error", e);
+  }
+
+  try {
+    startScrollHandler();
+  } catch(e){
+    console.log("Scroll error", e);
+  }
+
+  console.log("OM SHAKTI loaded successfully");
+
 }
 
 function renderHeroVisual() {
@@ -2387,8 +2409,6 @@ function enterSite() {
   } catch(error){
 
     console.log(error);
-
-    alert("Website loading error");
 
   }
 
