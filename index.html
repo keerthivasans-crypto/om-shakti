@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Spiritz — Premium Spirits Delivered</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -307,7 +307,7 @@
   .section-divider { height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); margin: 0 1.5rem; }
 
   /* ─── CATEGORY PILLS ─── */
-  .category-row { display: flex; gap: 0.75rem; overflow-x: auto; padding-bottom: 0.5rem; scrollbar-width: none; }
+  .category-row { display: flex; gap: 0.75rem; overflow-x: auto; padding-bottom: 0.5rem; scrollbar-width: none; webkit-overflow-scrolling: touch; }
   .category-row::-webkit-scrollbar { display: none; }
   .cat-pill {
     display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
@@ -726,16 +726,206 @@
     .footer-grid { grid-template-columns: 1fr 1fr; }
     .nav-location { display: none; }
   }
-  @media (max-width: 600px) {
-    .product-grid { grid-template-columns: 1fr 1fr; }
-    .footer-grid { grid-template-columns: 1fr; }
-    .admin-stats { grid-template-columns: 1fr; }
-    .form-row { grid-template-columns: 1fr; }
-    .hero-cta { flex-direction: column; }
-    .hero-stats { gap: 1rem; }
-    .nav-inner { gap: 0.75rem; }
-    .nav-search { max-width: none; }
+ @media (max-width: 768px) {
+
+  body{
+    overflow-x:hidden;
   }
+
+  .nav-inner{
+    flex-wrap:wrap;
+    height:auto;
+    padding:12px;
+    gap:10px;
+  }
+
+  .nav-logo{
+    font-size:2rem;
+  }
+
+  .nav-location{
+    width:100%;
+    justify-content:center;
+  }
+
+  .nav-search{
+    width:100%;
+    max-width:100%;
+    order:3;
+  }
+
+  .nav-search input{
+    font-size:16px;
+  }
+
+  .nav-actions{
+    width:100%;
+    justify-content:space-between;
+    overflow-x:auto;
+    padding-bottom:5px;
+  }
+
+  .nav-btn{
+    min-width:max-content;
+    font-size:12px;
+    padding:8px 12px;
+  }
+
+  .hero{
+    min-height:auto;
+    padding:40px 0;
+  }
+
+  .hero-inner{
+    grid-template-columns:1fr;
+    padding:20px;
+  }
+
+  .hero-title{
+    font-size:3rem;
+    line-height:1.2;
+  }
+
+  .hero-subtitle{
+    font-size:14px;
+  }
+
+  .hero-cta{
+    flex-direction:column;
+    width:100%;
+  }
+
+  .btn-primary,
+  .btn-secondary{
+    width:100%;
+    justify-content:center;
+  }
+
+  .hero-stats{
+    justify-content:space-between;
+    gap:10px;
+  }
+
+  .product-grid{
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+  }
+
+  .product-card{
+    width:100%;
+  }
+
+  .product-img{
+    height:140px;
+    font-size:3rem;
+  }
+
+  .product-name{
+    font-size:13px;
+  }
+
+  .product-price{
+    font-size:1rem;
+  }
+
+  .section{
+    padding:24px 14px;
+  }
+
+  .section-title{
+    font-size:1.5rem;
+  }
+
+  .flash-banner{
+    flex-direction:column;
+    text-align:center;
+  }
+
+  .detail-grid,
+  .cart-grid,
+  .checkout-grid,
+  .dashboard-grid,
+  .filter-sidebar{
+    grid-template-columns:1fr;
+  }
+
+  .detail-img-area{
+    height:280px;
+    font-size:5rem;
+  }
+
+  .detail-actions{
+    flex-direction:column;
+  }
+
+  .cart-summary{
+    position:relative;
+    top:0;
+  }
+
+  .footer-grid{
+    grid-template-columns:1fr;
+    gap:25px;
+  }
+
+  .footer-bottom{
+    flex-direction:column;
+    gap:10px;
+    text-align:center;
+  }
+
+  .admin-layout{
+    grid-template-columns:1fr;
+  }
+
+  .admin-sidebar{
+    display:none;
+  }
+
+  .admin-stats{
+    grid-template-columns:1fr;
+  }
+
+  .table-container{
+    overflow-x:auto;
+  }
+
+  table{
+    min-width:700px;
+  }
+   .mobile-bottom-nav{
+  position:fixed;
+  bottom:0;
+  left:0;
+  width:100%;
+  background:#0e1118;
+  border-top:1px solid #2a2f3f;
+  display:flex;
+  justify-content:space-around;
+  padding:10px 0;
+  z-index:9999;
+}
+
+.mobile-bottom-nav button{
+  background:none;
+  border:none;
+  color:#fff;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  font-size:18px;
+  gap:4px;
+}
+
+.mobile-bottom-nav span{
+  font-size:11px;
+}
+
+body{
+  padding-bottom:80px;
+}
+
+}
 </style>
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
 
@@ -1962,5 +2152,18 @@ document.addEventListener('click', e => {
 // ─── INIT ─────────────────────────────────────────────────────────────────
 updateCartBadge();
 </script>
+  <div class="mobile-bottom-nav">
+
+  <button onclick="showPage('home')">🏠<span>Home</span></button>
+
+  <button onclick="showPage('products')">🥃<span>Shop</span></button>
+
+  <button onclick="showPage('wishlist')">❤️<span>Wishlist</span></button>
+
+  <button onclick="showPage('cart')">🛒<span>Cart</span></button>
+
+  <button onclick="showPage('dashboard')">👤<span>Account</span></button>
+
+</div>
 </body>
 </html>
