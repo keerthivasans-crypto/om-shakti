@@ -1587,8 +1587,14 @@ function filterByCategory(cat, el) {
 }
 
 function renderTrending() {
-  const prods = [...PRODUCTS].sort(()=>Math.random()-0.5).slice(0,8);
-  document.getElementById('trending-grid').innerHTML = prods.map(renderProductCard).join('');
+
+  const prods = [...PRODUCTS]
+    .sort(() => Math.random() - 0.5)
+    .slice(0, 8);
+
+  document.getElementById('trending-grid').innerHTML =
+    prods.map(renderProductCard).join('');
+
 }
 
 function renderBestSellers() {
@@ -1729,7 +1735,7 @@ function renderCart() {
     el.innerHTML = `<div class="empty-cart"><div class="empty-icon">🛒</div><h3>Your cart is empty</h3><p>Browse our premium spirits collection and add something amazing.</p><button class="btn-primary" style="margin-top:1.25rem" onclick="showPage('products')">🥃 Shop Now</button></div>`;
     return;
   }
-  const items = cart.map(i => ({
+ const items = cart.map(i => ({
   ...i,
   product: PRODUCTS.find(p => p.id === i.id)
 })).filter(i => i.product);
