@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Spiritz — Premium Spirits Delivered</title>
+<title>OM SHAKTI — Premium Spirits Delivered</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -936,7 +936,7 @@ body{
 <!-- AGE GATE -->
 <div id="age-gate">
   <div class="age-gate-logo">
-    Spiritz
+   OM SHAKTI
     <span>Premium Spirits Delivered</span>
   </div>
   <div class="age-gate-ornament"></div>
@@ -947,7 +947,7 @@ body{
       <button class="btn-age-yes" onclick="enterSite()">Yes, I'm 21+</button>
       <button class="btn-age-no" onclick="window.location='https://www.responsibility.org/'">No, Exit</button>
     </div>
-    <p class="age-legal">By clicking "Yes, I'm 21+", you confirm you are of legal drinking age in your jurisdiction. Spiritz promotes responsible drinking. Delivery available only in permitted areas during legal hours (11AM–10PM).</p>
+    <p class="age-legal">By clicking "Yes, I'm 21+", you confirm you are of legal drinking age in your jurisdiction. OM SHAKTI promotes responsible drinking. Delivery available only in permitted areas during legal hours (11AM–10PM).</p>
   </div>
 </div>
 
@@ -964,7 +964,7 @@ body{
 <!-- NAVBAR -->
 <nav id="navbar">
   <div class="nav-inner">
-    <a class="nav-logo" onclick="showPage('home')">Spiritz</a>
+    <a class="nav-logo" onclick="showPage('home')">OM SHAKTI</a>
     <div class="nav-location" onclick="detectLocation()">
   📍 <strong id="user-city">Detect Location</strong>
   <span style="color:var(--text3)"> ▾</span>
@@ -1020,7 +1020,7 @@ body{
         <div class="resp-icon">🍃</div>
         <div>
           <div class="resp-title">Responsible Drinking Notice</div>
-          <div class="resp-text">Spiritz encourages responsible consumption. Do not drink and drive. Keep alcohol away from minors. Delivery available only between 11 AM – 10 PM. We verify age at delivery. Pregnant women should avoid alcohol.</div>
+          <div class="resp-text">OM SHAKTI encourages responsible consumption. Do not drink and drive. Keep alcohol away from minors. Delivery available only between 11 AM – 10 PM. We verify age at delivery. Pregnant women should avoid alcohol.</div>
         </div>
       </div>
     </div>
@@ -1201,7 +1201,7 @@ body{
 <footer>
   <div class="footer-grid">
     <div>
-      <div class="footer-brand-name">Spiritz</div>
+      <div class="footer-brand-name">OM SHAKTI</div>
       <div class="footer-tagline">India's most trusted premium spirits delivery platform. FSSAI licensed. Age-verified. Responsibly serving adults since 2020.</div>
       <div class="footer-legal">🔞 By using this service, you confirm you are 21 years or older. Drinking is injurious to health. Do not drink and drive. Available only in legally permitted areas.</div>
     </div>
@@ -1230,7 +1230,7 @@ body{
     </div>
   </div>
   <div class="footer-bottom">
-    <div>© 2025 Spiritz. All rights reserved. 🔞 21+ Only.</div>
+    <div>© 2025 OM SHAKTI. All rights reserved. 🔞 21+ Only.</div>
     <div style="display:flex;gap:0.75rem;align-items:center">
       <span>💳 Visa</span><span>💳 Mastercard</span><span>📱 UPI</span><span>🏦 NetBanking</span>
     </div>
@@ -1272,16 +1272,16 @@ const CATEGORIES = [
 ];
 
 // ─── STATE ───────────────────────────────────────────────────────────────
-let cart = JSON.parse(localStorage.getItem('spiritz-cart') || '[]');
-let wishlist = JSON.parse(localStorage.getItem('spiritz-wish') || '[]');
+let cart = JSON.parse(localStorage.getItem('OM SHAKTI-cart') || '[]');
+let wishlist = JSON.parse(localStorage.getItem('OM SHAKTI-wish') || '[]');
 let currentPage = 'home';
 let currentProduct = null;
 let checkoutStep = 1;
 let timerInterval = null;
 
 // ─── UTILITY ─────────────────────────────────────────────────────────────
-function saveCart() { localStorage.setItem('spiritz-cart', JSON.stringify(cart)); updateCartBadge(); }
-function saveWish() { localStorage.setItem('spiritz-wish', JSON.stringify(wishlist)); }
+function saveCart() { localStorage.setItem('OM SHAKTI-cart', JSON.stringify(cart)); updateCartBadge(); }
+function saveWish() { localStorage.setItem('OM SHAKTI-wish', JSON.stringify(wishlist)); }
 function updateCartBadge() {
   const total = cart.reduce((s,i)=>s+i.qty,0);
   document.getElementById('cart-badge').textContent = total;
@@ -1337,17 +1337,17 @@ const DELIVERY_CITIES = [
 const STORES = [
   {
     city: "Chennai",
-    name: "Spiritz Chennai Central",
+    name: "OM SHAKTI Chennai Central",
     deliveryFee: 99
   },
   {
     city: "Madurai",
-    name: "Spiritz Madurai Elite",
+    name: "OM SHAKTI Madurai Elite",
     deliveryFee: 49
   },
   {
     city: "Bangalore",
-    name: "Spiritz Bangalore Premium",
+    name: "OM SHAKTI Bangalore Premium",
     deliveryFee: 129
   }
 ];
@@ -1477,9 +1477,9 @@ function showToast(msg, type='info') {
 function showModal(type) {
   const body = document.getElementById('modal-body');
   let html = '';
-  if (type === 'terms') html = `<div class="modal-title">Terms & Conditions</div><p style="color:var(--text2);font-size:0.82rem;line-height:1.8">1. You must be 21+ to use Spiritz.<br>2. Delivery is subject to local regulations.<br>3. All sales are final after dispatch.<br>4. We verify age at delivery.<br>5. Products are sold only in permitted regions.<br>6. Spiritz reserves the right to refuse orders.<br>7. Prices include all applicable taxes.<br><br>Last updated: Dec 2025</p>`;
-  else if (type === 'privacy') html = `<div class="modal-title">Privacy Policy</div><p style="color:var(--text2);font-size:0.82rem;line-height:1.8">We collect only the data necessary to process your orders securely. Your personal information is never sold to third parties. Age verification data is stored encrypted. We comply with India's Data Protection Act. You may request deletion of your account data at any time by contacting support@spiritz.in</p>`;
-  else if (type === 'resp') html = `<div class="modal-title">Responsible Drinking</div><p style="color:var(--text2);font-size:0.82rem;line-height:1.8">🍃 Spiritz promotes responsible consumption.<br><br>• Never drink and drive<br>• Keep alcohol away from minors<br>• Drink in moderation<br>• Pregnant women should avoid alcohol<br>• Be aware of medication interactions<br>• Watch out for your friends<br><br>📞 Helpline: 1800-11-0031 (NIMHANS alcohol helpline)</p>`;
+  if (type === 'terms') html = `<div class="modal-title">Terms & Conditions</div><p style="color:var(--text2);font-size:0.82rem;line-height:1.8">1. You must be 21+ to use OM SHAKTI.<br>2. Delivery is subject to local regulations.<br>3. All sales are final after dispatch.<br>4. We verify age at delivery.<br>5. Products are sold only in permitted regions.<br>6. OM SHAKTI reserves the right to refuse orders.<br>7. Prices include all applicable taxes.<br><br>Last updated: Dec 2025</p>`;
+  else if (type === 'privacy') html = `<div class="modal-title">Privacy Policy</div><p style="color:var(--text2);font-size:0.82rem;line-height:1.8">We collect only the data necessary to process your orders securely. Your personal information is never sold to third parties. Age verification data is stored encrypted. We comply with India's Data Protection Act. You may request deletion of your account data at any time by contacting support@omshakti.in</p>`;
+  else if (type === 'resp') html = `<div class="modal-title">Responsible Drinking</div><p style="color:var(--text2);font-size:0.82rem;line-height:1.8">🍃 OM SHAKTI promotes responsible consumption.<br><br>• Never drink and drive<br>• Keep alcohol away from minors<br>• Drink in moderation<br>• Pregnant women should avoid alcohol<br>• Be aware of medication interactions<br>• Watch out for your friends<br><br>📞 Helpline: 1800-11-0031 (NIMHANS alcohol helpline)</p>`;
   else if (type === 'contact') html = `<div class="modal-title">Contact Us</div><div class="form-group"><label class="form-label">Name</label><input class="form-input" placeholder="Your name"></div><div class="form-group"><label class="form-label">Email</label><input class="form-input" type="email" placeholder="your@email.com"></div><div class="form-group"><label class="form-label">Message</label><textarea class="form-input" rows="4" placeholder="How can we help?"></textarea></div><button class="btn-primary" onclick="showToast('Message sent! We\'ll respond within 24hr','success');closeModalDirect()" style="width:100%;justify-content:center">Send Message</button>`;
   body.innerHTML = html;
   document.getElementById('modal-overlay').classList.add('open');
@@ -1489,12 +1489,12 @@ function closeModalDirect() { document.getElementById('modal-overlay').classList
 
 // ─── AGE GATE ─────────────────────────────────────────────────────────────
 function enterSite() {
-  sessionStorage.setItem('spiritz-age', '1');
+  sessionStorage.setItem('OM SHAKTI-age', '1');
   document.getElementById('age-gate').classList.add('hidden');
   initApp();
 }
 window.onload = () => {
-  if (sessionStorage.getItem('spiritz-age')) {
+  if (sessionStorage.getItem('OM SHAKTI-age')) {
     document.getElementById('age-gate').classList.add('hidden');
     initApp();
   }
@@ -1757,7 +1757,7 @@ function renderCart() {
 }
 function applyCoupon() {
   const v = document.getElementById('coupon-in').value.toUpperCase().trim();
-  if (v==='SPIRITZ10') showToast('✅ 10% off applied!','success');
+  if (v==='OM SHAKTI10') showToast('✅ 10% off applied!','success');
   else if (v==='WELCOME') showToast('✅ ₹200 off applied!','success');
   else showToast('❌ Invalid coupon code','error');
 }
@@ -2010,7 +2010,7 @@ L.marker([
 function renderAdmin() {
   document.getElementById('admin-content').innerHTML = `
     <div class="admin-header">
-      <h2>⚙️ Admin Dashboard — Spiritz</h2>
+      <h2>⚙️ Admin Dashboard — OM SHAKTI</h2>
       <span class="footer-badge">✅ Super Admin</span>
     </div>
     <div class="admin-layout">
