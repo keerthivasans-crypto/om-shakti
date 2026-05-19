@@ -1847,7 +1847,18 @@ function showProductDetail(id) {
   if (!p) return;
   currentProduct = p;
   const discount = p.oldPrice ? Math.round((1-p.price/p.oldPrice)*100) : 0;
-  document.getElementById('detail-img').innerHTML = `<span style="font-size:8rem">${p.emoji}</span>`;
+  document.getElementById('detail-img').innerHTML = `
+  <img
+    src="${p.image}"
+    alt="${p.name}"
+    class="product-real-image"
+    style="
+      width:300px;
+      height:300px;
+      object-fit:contain;
+    "
+  >
+`;
   document.getElementById('detail-info').innerHTML = `
     <div class="detail-brand">${p.brand} · ${p.origin}</div>
     <div class="detail-name">${p.name}</div>
