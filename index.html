@@ -2561,29 +2561,52 @@ async function logoutUser(){
 
   try {
 
+    // firebase logout
     await auth.signOut();
 
+    // reset login text
+    document
+      .getElementById("user-label")
+      .innerText = "Login";
+
+    // hide logout button
+    const logoutBtn =
+      document.getElementById("logout-btn");
+
+    if(logoutBtn){
+
+      logoutBtn.style.display = "none";
+
+    }
+
+    // CLOSE dashboard
+    document
+      .querySelectorAll(".page")
+      .forEach(page => {
+
+        page.classList.remove("active");
+
+      });
+
+    // OPEN HOME PAGE
+    document
+      .getElementById("page-home")
+      .classList.add("active");
+
+    // success message
     showToast(
       "Logged out successfully",
       "success"
     );
 
-    document
-      .getElementById("user-label")
-      .innerText = "Login";
-
-    const btn =
-      document.getElementById("logout-btn");
-
-    if(btn){
-      btn.style.display = "none";
-    }
-
-    showPage("home");
+    // scroll top
+    window.scrollTo(0,0);
 
   } catch(error){
 
     console.log(error);
+
+    alert(error.message);
 
   }
 
