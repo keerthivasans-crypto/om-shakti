@@ -1779,18 +1779,15 @@ function renderProductCard(p) {
       <div class="product-wish ${inWish?'active':''}" onclick="event.stopPropagation();toggleWish(${p.id},this)">
         ${inWish?'❤️':'🤍'}
       </div>
-      <div class="product-img">
+     <div class="product-img">
 
-  ${
-    p.image
-    ?
-    `<img
-      src="${p.image}"
-      alt="${p.name}"
-      class="product-real-image"
-    >`
-    :
-    `<div style="font-size:4rem">${p.emoji}</div>`
+  ${p.image
+    ? `<img
+        src="${p.image}"
+        alt="${p.name}"
+        class="product-real-image"
+      />`
+    : `<div style="font-size:4rem">${p.emoji || '🥃'}</div>`
   }
 
 </div>
