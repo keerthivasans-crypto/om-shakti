@@ -1780,12 +1780,20 @@ function renderProductCard(p) {
         ${inWish?'❤️':'🤍'}
       </div>
       <div class="product-img">
-      <img
-  src="${p.image}"
-  alt="${p.name}"
-  class="product-real-image"
-/>
-      </div>
+
+  ${
+    p.image
+    ?
+    `<img
+      src="${p.image}"
+      alt="${p.name}"
+      class="product-real-image"
+    >`
+    :
+    `<div style="font-size:4rem">${p.emoji}</div>`
+  }
+
+</div>
       <div class="product-info">
         <div class="product-brand">${p.brand}</div>
         <div class="product-name">${p.name}</div>
