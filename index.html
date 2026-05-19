@@ -2529,9 +2529,73 @@ async function googleLogin(){
     alert(error.message);
 
   }
+  async function logoutUser(){
+
+  try {
+
+    await auth.signOut();
+
+    showToast(
+      "Logged out successfully",
+      "success"
+    );
+
+    document
+      .getElementById("user-label")
+      .innerText = "Login";
+
+    document
+      .getElementById("logout-btn")
+      .style.display = "none";
+
+  } catch(error){
+
+    console.log(error);
+
+  }
+
+}
+
+// auth state listener
+auth.onAuthStateChanged(user => {
+
+  if(user){
+
+    document
+      .getElementById("user-label")
+      .innerText =
+      user.email;
+
+    document
+      .getElementById("logout-btn")
+      .style.display = "block";
+
+  }
+
+});
 
 }
 
 </script>
+  
+  <button
+  id="logout-btn"
+  onclick="logoutUser()"
+  style="
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    z-index:9999;
+    padding:10px 18px;
+    border:none;
+    border-radius:12px;
+    background:#d4af37;
+    color:#000;
+    font-weight:bold;
+    display:none;
+  "
+>
+  Logout
+</button>
 </body>
 </html>
