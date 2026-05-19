@@ -1569,9 +1569,14 @@ document.addEventListener("keydown", (e) => {
 
 function openLoginModal(){
 
-  document
-    .getElementById("login-modal")
-    .classList.add("open");
+  const modal =
+    document.getElementById("login-modal");
+
+  if(modal){
+
+    modal.classList.add("open");
+
+  }
 
 }
 
@@ -2534,7 +2539,13 @@ async function googleLogin(){
       "✅ Google Login Successful",
       "success"
     );
-showPage("dashboard");
+
+    document
+      .getElementById("login-modal")
+      .classList.remove("open");
+
+    showPage("dashboard");
+
   } catch(error){
 
     console.log(error);
@@ -2542,7 +2553,11 @@ showPage("dashboard");
     alert(error.message);
 
   }
-  async function logoutUser(){
+
+}
+
+// LOGOUT
+async function logoutUser(){
 
   try {
 
@@ -2557,9 +2572,12 @@ showPage("dashboard");
       .getElementById("user-label")
       .innerText = "Login";
 
-    document
-      .getElementById("logout-btn")
-      .style.display = "none";
+    const btn =
+      document.getElementById("logout-btn");
+
+    if(btn){
+      btn.style.display = "none";
+    }
 
     showPage("home");
 
@@ -2570,6 +2588,39 @@ showPage("dashboard");
   }
 
 }
+
+// AUTH STATE
+auth.onAuthStateChanged(user => {
+
+  const label =
+    document.getElementById("user-label");
+
+  const logoutBtn =
+    document.getElementById("logout-btn");
+
+  if(user){
+
+    label.innerText = "My Account";
+
+    if(logoutBtn){
+
+      logoutBtn.style.display = "block";
+
+    }
+
+  } else {
+
+    label.innerText = "Login";
+
+    if(logoutBtn){
+
+      logoutBtn.style.display = "none";
+
+    }
+
+  }
+
+});
 // auth state listener
 auth.onAuthStateChanged(user => {
 
