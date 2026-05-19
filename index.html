@@ -1169,7 +1169,20 @@ body{
       <div style="margin-bottom:1rem"><a onclick="showPage('products')" style="color:var(--text3);cursor:pointer;font-size:0.78rem">← Back to Products</a></div>
       <div class="detail-grid">
         <div>
-          <div class="detail-img-area" id="detail-img"></div>
+          <div class="detail-img-area">
+
+<img
+  src="${p.image}"
+  alt="${p.name}"
+  class="product-real-image"
+  style="
+    width:300px;
+    height:300px;
+    object-fit:contain;
+  "
+>
+
+</div>
           <div class="resp-banner" style="margin-top:1rem">
             <div class="resp-icon">⚠️</div>
             <div><div class="resp-title">Legal Notice</div><div class="resp-text">Sale of alcohol to minors (under 21) is strictly prohibited. Government ID will be verified at the time of delivery.</div></div>
@@ -1726,7 +1739,15 @@ function renderHeroVisual() {
   el.innerHTML = featured.map(p=>`
     <div class="hero-bottle" onclick="showPage('detail',${p.id})">
       ${p.badge?`<div class="hero-bottle-tag">${p.badge.toUpperCase()}</div>`:''}
-      <div class="hero-bottle-img">${p.emoji}</div>
+      <div class="hero-bottle-img">
+
+  <img
+    src="${p.image}"
+    alt="${p.name}"
+    class="product-real-image"
+  >
+
+</div>
       <div class="hero-bottle-info">
         <div class="hero-bottle-name">${p.name.split(' ').slice(0,3).join(' ')}</div>
         <div class="hero-bottle-price">${fmt(p.price)}</div>
@@ -1786,6 +1807,7 @@ function renderProductCard(p) {
       ? `
         <img 
           src="${p.image}" 
+           alt="${p.name}"
           class="product-real-image"
 
           onerror="
@@ -1927,7 +1949,19 @@ function renderCart() {
       <div class="cart-items">
         ${items.map(i=>`
           <div class="cart-item">
-            <div class="cart-item-img">${i.product.emoji}</div>
+           <div class="cart-item-img">
+
+  <img
+    src="${i.product.image}"
+    alt="${i.product.name}"
+    style="
+      width:70px;
+      height:70px;
+      object-fit:contain;
+    "
+  >
+
+</div>
             <div class="cart-item-info">
               <div class="cart-item-name">${i.product.name}</div>
               <div class="cart-item-meta">${i.product.volume} · ${i.product.abv} · ${i.product.brand}</div>
@@ -2149,7 +2183,19 @@ function renderDashboard() {
             ${sampleOrders.map(o=>`
               <div class="order-row" onclick="showTrackingModal()">
                 <div class="order-id">${o.id}<div style="font-size:0.65rem;color:var(--text3);margin-top:2px">${o.date}</div></div>
-                <div class="order-items-preview">${o.items.map(p=>`<div class="order-item-thumb">${p.emoji}</div>`).join('')}</div>
+                <div class="order-items-preview">${o.items.map(p=>`<div class="order-item-thumb">
+
+  <img
+    src="${item.image}"
+    alt="${item.name}"
+    style="
+      width:40px;
+      height:40px;
+      object-fit:contain;
+    "
+  >
+
+</div>`).join('')}</div>
                 <div class="order-status status-${o.status}">${o.status.charAt(0).toUpperCase()+o.status.slice(1)}</div>
                 <div class="order-total">${fmt(o.total)}</div>
               </div>
