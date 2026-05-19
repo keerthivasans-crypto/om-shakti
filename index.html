@@ -2087,7 +2087,13 @@ function renderDashboard() {
         <div class="dash-nav-item" onclick="showTrackingModal()"><span class="icon">🚚</span>Track Order</div>
         <div class="dash-nav-item" onclick="showToast('Loyalty points: 2,450 pts','info')"><span class="icon">⭐</span>Loyalty Points</div>
         <div class="dash-nav-item" onclick="showToast('Referral code: VASAN20','info')"><span class="icon">🎁</span>Refer & Earn</div>
-        <div class="dash-nav-item" onclick="showToast('Logged out','info')"><span class="icon">🚪</span>Logout</div>
+       <div class="dash-nav-item" onclick="logoutUser()">
+
+  <span class="icon">🚪</span>
+
+  Logout
+
+</div>
       </div>
       <div class="dash-content">
         <div class="stat-cards">
@@ -2564,22 +2570,17 @@ async function logoutUser(){
     // firebase logout
     await auth.signOut();
 
-    // reset login text
-    document
-      .getElementById("user-label")
-      .innerText = "Login";
+    // change navbar text
+    const userLabel =
+      document.getElementById("user-label");
 
-    // hide logout button
-    const logoutBtn =
-      document.getElementById("logout-btn");
+    if(userLabel){
 
-    if(logoutBtn){
-
-      logoutBtn.style.display = "none";
+      userLabel.innerText = "Login";
 
     }
 
-    // CLOSE dashboard
+    // hide dashboard page
     document
       .querySelectorAll(".page")
       .forEach(page => {
@@ -2588,19 +2589,37 @@ async function logoutUser(){
 
       });
 
-    // OPEN HOME PAGE
-    document
-      .getElementById("page-home")
-      .classList.add("active");
+    // show home page
+    const homePage =
+      document.getElementById("page-home");
 
-    // success message
+    if(homePage){
+
+      homePage.classList.add("active");
+
+    }
+
+    // close login modal if open
+    const modal =
+      document.getElementById("login-modal");
+
+    if(modal){
+
+      modal.classList.remove("open");
+
+    }
+
+    // scroll top
+    window.scrollTo({
+      top:0,
+      behavior:"smooth"
+    });
+
+    // success toast
     showToast(
       "Logged out successfully",
       "success"
     );
-
-    // scroll top
-    window.scrollTo(0,0);
 
   } catch(error){
 
@@ -2611,7 +2630,6 @@ async function logoutUser(){
   }
 
 }
-
 // AUTH STATE
 auth.onAuthStateChanged(user => {
 
