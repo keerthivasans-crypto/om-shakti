@@ -2354,34 +2354,8 @@ updateCartBadge();
 </div>
   <script>
 
-const firebaseConfig = {
-
-  apiKey: "AIzaSyBWxY4WQmJkv5lhRbcsfeoo7R9ANSnJWL0",
-
-  authDomain: "om-shakti.firebaseapp.com",
-
-  projectId: "om-shakti",
-
-  storageBucket: "om-shakti.firebasestorage.app",
-
-  messagingSenderId: "432657919880",
-
-  appId: "1:432657919880:web:b315e58512d9dea027543d"
-
-};
-
-firebase.initializeApp(firebaseConfig);
-
-const auth = firebase.auth();
-
-const db = firebase.firestore();
-
 </script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
-
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
   <div id="login-modal" class="modal-overlay">
 
   <div class="modal">
@@ -2419,7 +2393,9 @@ const db = firebase.firestore();
   </div>
 
 </div>
-  <!-- Firebase -->
+
+</script>
+  <!-- FIREBASE -->
 
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 
@@ -2427,7 +2403,14 @@ const db = firebase.firestore();
 
 <script>
 
-const firebaseConfig = {
+let auth = null;
+
+// SAFE FIREBASE START
+window.addEventListener("load", () => {
+
+  try {
+
+    const firebaseConfig = {
 
   apiKey: "AIzaSyBWxY4WQmJkv5lhRbcsfeoo7R9ANSnJWL0",
 
@@ -2441,11 +2424,113 @@ const firebaseConfig = {
 
   appId: "1:432657919880:web:b315e58512d9dea027543d"
 
-};
+    };
 
-firebase.initializeApp(firebaseConfig);
+    // prevent duplicate init
+    if (!firebase.apps.length) {
 
-const auth = firebase.auth();
+      firebase.initializeApp(firebaseConfig);
+
+    }
+
+    auth = firebase.auth();
+
+    console.log("Firebase loaded successfully");
+
+  } catch(error){
+
+    console.log(error);
+
+  }
+
+});
+
+// LOGIN FUNCTION
+async function loginUser(){
+
+  try {
+
+    // check firebase
+    if(!auth){
+
+      alert(
+        "Firebase not loaded yet. Refresh page."
+      );
+
+      return;
+
+    }
+
+    const email =
+      document.getElementById(
+        "login-email"
+      ).value;
+
+    const password =
+      document.getElementById(
+        "login-password"
+      ).value;
+
+    await auth.signInWithEmailAndPassword(
+      email,
+      password
+    );
+
+    showToast(
+      "✅ Login successful",
+      "success"
+    );
+
+    document
+      .getElementById("login-modal")
+      .classList.remove("open");
+
+    document
+      .getElementById("user-label")
+      .innerText = "My Account";
+
+  } catch(error){
+
+    console.log(error);
+
+    alert(error.message);
+
+  }
+
+}
+
+// GOOGLE LOGIN
+async function googleLogin(){
+
+  try {
+
+    if(!auth){
+
+      alert("Firebase not loaded");
+
+      return;
+
+    }
+
+    const provider =
+      new firebase.auth.GoogleAuthProvider();
+
+    await auth.signInWithPopup(provider);
+
+    showToast(
+      "✅ Google Login Successful",
+      "success"
+    );
+
+  } catch(error){
+
+    console.log(error);
+
+    alert(error.message);
+
+  }
+
+}
 
 </script>
 </body>
