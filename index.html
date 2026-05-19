@@ -980,7 +980,13 @@ body{
         <span class="nav-icon">🛒</span><span>Cart</span>
         <span class="badge" id="cart-badge">0</span>
       </button>
-      <button class="nav-btn" onclick="openLoginModal()">
+    <button class="nav-btn" onclick="handleAccountClick()">
+
+  <span class="nav-icon">👤</span>
+
+  <span id="user-label">Login</span>
+
+</button>
 
   <span class="nav-icon">👤</span>
 
@@ -1553,7 +1559,19 @@ document.addEventListener("keydown", (e) => {
   }
 
 });
-  // ─── FIREBASE AUTH ─────────────────────────────
+ function handleAccountClick(){
+
+  if(auth && auth.currentUser){
+
+    showPage("dashboard");
+
+  } else {
+
+    openLoginModal();
+
+  }
+
+}
 
 function openLoginModal(){
 
@@ -1586,6 +1604,7 @@ async function loginUser(){
       "✅ Login successful",
       "success"
     );
+    showPage("dashboard");
 
     document
       .getElementById("login-modal")
@@ -2521,7 +2540,7 @@ async function googleLogin(){
       "✅ Google Login Successful",
       "success"
     );
-
+showPage("dashboard");
   } catch(error){
 
     console.log(error);
@@ -2548,6 +2567,8 @@ async function googleLogin(){
       .getElementById("logout-btn")
       .style.display = "none";
 
+    showPage("home");
+
   } catch(error){
 
     console.log(error);
@@ -2555,26 +2576,39 @@ async function googleLogin(){
   }
 
 }
-
 // auth state listener
 auth.onAuthStateChanged(user => {
 
+  const label =
+    document.getElementById("user-label");
+
+  const logoutBtn =
+    document.getElementById("logout-btn");
+
   if(user){
 
-    document
-      .getElementById("user-label")
-      .innerText =
-      user.email;
+    label.innerText =
+      "My Account";
 
-    document
-      .getElementById("logout-btn")
-      .style.display = "block";
+    if(logoutBtn){
+
+      logoutBtn.style.display = "block";
+
+    }
+
+  } else {
+
+    label.innerText = "Login";
+
+    if(logoutBtn){
+
+      logoutBtn.style.display = "none";
+
+    }
 
   }
 
 });
-
-}
 
 </script>
   
